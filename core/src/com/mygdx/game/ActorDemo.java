@@ -29,6 +29,7 @@ public class ActorDemo extends ApplicationAdapter {
 	final int screenX = 1024;
 	final int screenY = 768;
 
+
 	@Override
 	public void create () {
 
@@ -47,10 +48,17 @@ public class ActorDemo extends ApplicationAdapter {
 
 		/**Setting amount of random enemies
 		//Can't be more than 6 or less than 2*/
-		int ranEnemy = random.nextInt(16-10) + 10;
-		//Declaring variables random x and y for enemy pos
+		int ranEnemy = random.nextInt(15-10) + 10;
+		int bigEnemy = ranEnemy / 3;
+		int medEnemy = ranEnemy / 3;
+		int smallEnemy = ranEnemy / 3;
+
+		//Declaring variables random x and y for enemy pos and the 3 random sizes
 		float xRan;
 		float yRan;
+		float sizeBig;
+		float sizeMed;
+		float sizeSmall;
 
 		/**RANDOM ENEMY GENERATION starts here
 		//**************************************/
@@ -62,9 +70,25 @@ public class ActorDemo extends ApplicationAdapter {
 			//Setting x and y location of enemy we'll be creating taking into
 			xRan = random.nextInt((950 - 100) + 1 ) + 100;
 			yRan = random.nextInt((700 - 100) + 1 ) + 100;
+			//create size parameters
+
+			sizeBig = random.nextInt((150 - 149) + 1) + 149;
+			sizeMed = random.nextInt((75 - 74) + 1) + 74;
+			sizeSmall = random.nextInt((25 - 10) + 1) + 10;
+
 
 			//Makes new enemy actor, gives it our random x and y, and passes it to the stage
-			this.enemyActor = new EnemyActor(xRan, yRan);
+			if (i < bigEnemy){
+				this.enemyActor = new EnemyActor(xRan, yRan, sizeBig);
+			}else if ( i < medEnemy * 2){
+
+				//we're make a medium one
+				this.enemyActor = new EnemyActor(xRan, yRan, sizeMed);
+			}else{
+
+				//we're make a small one
+				this.enemyActor = new EnemyActor(xRan, yRan, sizeSmall);
+			}
 			enemyList.add(this.enemyActor);//adds new actor to array list
 			stage.addActor(enemyActor);
 			//ERROR CHECKING:
@@ -143,7 +167,7 @@ public class ActorDemo extends ApplicationAdapter {
 	}
 
 
-
-
+	private class random {
 	}
+}
 

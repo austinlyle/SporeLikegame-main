@@ -14,20 +14,24 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
     public class EnemyActor extends Actor {
         //Creating sprite and feeding it our image
         Sprite sprite = new Sprite (new Texture(Gdx.files.internal("enemycircle.png")));
+
         //default dimensions
         float defaultWidth = 100;
         float defaultHeight = 100;
 
 
-        public EnemyActor(float xpos, float ypos) {
+
+
+        public EnemyActor(float xpos, float ypos, float sizeRan) {
             //setting starting pos
             sprite.setX(xpos);
             sprite.setY(ypos);
 
 
+
             //Setting dimensions
-            setBounds(sprite.getX(), sprite.getY(), defaultWidth, defaultHeight);
-            sprite.setSize(defaultWidth, defaultHeight);
+            setBounds(sprite.getX(), sprite.getY(), sizeRan, sizeRan);
+            sprite.setSize(sizeRan, sizeRan);
             setTouchable(Touchable.enabled);
 
             //Error checking
@@ -48,9 +52,8 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 
 
-
-
         }
+
 
         @Override
         protected void positionChanged() {
@@ -70,6 +73,10 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
         @Override
         public void act(float delta) {
             super.act(delta);
+        }
+
+        public float getDefaultHeight() {
+            return defaultHeight;
         }
     }
 
